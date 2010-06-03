@@ -1,0 +1,21 @@
+sfPropelMigrations plugin
+=========================
+
+The `sfPropelMigrations` is a symfony plugin that provides database migrations
+support for projects using the Propel ORM.
+
+This plugin is based on the sfPropelMigrationsLightPlugin by Martin Kreidenweis.
+
+Features
+--------
+
+In addition to the migrations from the sfPropelMigrationsLightPlugin this plugin
+provides support for working in branches and therefore non-iterating migrations.
+
+This plugin also provides support for migrations on multiple databases.
+    
+License
+-------
+
+For detailed license information please view the LICENSE file and the included
+license information of all libraries.
