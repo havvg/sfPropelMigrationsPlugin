@@ -13,6 +13,15 @@ In addition to the migrations from the sfPropelMigrationsLightPlugin this plugin
 provides support for working in branches and therefore non-iterating migrations.
 
 This plugin also provides support for migrations on multiple databases.
+
+Configuration
+-------------
+
+The following configuration items are available in the settings.yml.
+The examples contain the default value for these settings.
+  
+    * propelmigrationsplugin_migrationsdir: %SF_DATA_DIR%/migrations
+      The top level directory in which this plugin operates.
     
 License
 -------

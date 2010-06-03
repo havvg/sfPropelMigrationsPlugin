@@ -21,4 +21,22 @@ class sfPropelMigrationsPluginConfiguration extends sfPluginConfiguration
       }
     }
   }
+
+  /**
+   * Returns the top level directory in which the sfPropelMigrationsPlugin is working.
+   *
+   * @return string
+   */
+  static public function getMigrationsDir()
+  {
+    static $migDir = null;
+
+    if (is_null($migDir))
+    {
+      $default = sfConfig::get('sf_data_dir') . DIRECTORY_SEPARATOR . 'migrations';
+      $migDir = sfConfig::get('sf_propelmigrationsplugin_migrationsdir', $default);
+    }
+
+    return $migDir;
+  }
 }
