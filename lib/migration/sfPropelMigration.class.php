@@ -39,6 +39,7 @@ class sfPropelMigration
       throw new InvalidArgumentException(self::EXCEPTION_INVALID_VERSION);
     }
 
+    $name = $this->sanitizeName($name);
     if (!is_string($name) || empty($name))
     {
       throw new InvalidArgumentException(self::EXCEPTION_INVALID_NAME);
@@ -66,6 +67,53 @@ class sfPropelMigration
   public function getName()
   {
     return $this->name;
+  }
+
+  /**
+   * Sanitizes the given name to be a valid name for a migration.
+   *
+   * @param string $name
+   *
+   * @return string
+   */
+  public function sanitizeName($name)
+  {
+    if (!is_string($name) || empty($name))
+    {
+      throw new InvalidArgumentException(self::EXCEPTION_INVALID_NAME);
+    }
+
+    return preg_replace('/[^a-zA-Z0-9]/', '_', $name);
+  }
+
+  /**
+   * Returns the filename of this migration.
+   *
+   * @return string
+   */
+  public function getFilename()
+  {
+    return $this->getName() . DIRECTORY_SEPARATOR . $this->getVersion() . '_' . $this->getName() . '.php';
+  }
+
+  /**
+   * Returns the full path to the file of this migration.
+   *
+   * @return string
+   */
+  public function getFullFilename()
+  {
+    return sfPropelMigrationsPluginConfiguration::getMigrationsDir() . DIRECTORY_SEPARATOR . $this->getFilename();
+  }
+
+  /**
+   * Returns the dirname of the directory of this migration.
+   *
+   * @return string
+   */
+  public function getDirname()
+  {
+    return dirname($this->getFullFilename());
   }
 
   /**

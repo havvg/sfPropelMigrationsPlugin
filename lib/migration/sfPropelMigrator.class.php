@@ -2,6 +2,10 @@
 
 class sfPropelMigrator
 {
+  const EXCEPTION_MIGRATION_DIR_NOT_WRITABLE = 'The directory for the new migration file is not writable.';
+
+  const EXCEPTION_MIGRATION_NOT_WRITTEN = 'The content could not be written to the new migration file.';
+
   /**
    * The list of initialized migrations.
    *
@@ -49,5 +53,42 @@ class sfPropelMigrator
   public function getMigrations()
   {
     return $this->migrations;
+  }
+
+  /**
+   * Intializes a new migration.
+   *
+   * @throws RuntimeException
+   *
+   * @param string $name The human readable name for this migration.
+   *
+   * @return string The filename for the new migration.
+   */
+  public function initializeMigration($name)
+  {
+    $version = (microtime(true) * 10000);
+
+    $migration = new sfPropelMigration($version, $name);
+    $skeleton = sfPropelMigrationSkeleton::getSkeleton($version);
+
+    if (!is_dir($migration->getDirname()))
+    {
+      $fs = new sfFilesystem();
+      $fs->mkdirs($migration->getDirname());
+    }
+
+    if (is_writable($migration->getDirname()))
+    {
+      if (file_put_contents($migration->getFullFilename(), $skeleton) === false)
+      {
+        throw new RuntimeException(self::EXCEPTION_MIGRATION_NOT_WRITTEN);
+      }
+    }
+    else
+    {
+      throw new RuntimeException(self::EXCEPTION_MIGRATION_DIR_NOT_WRITABLE);
+    }
+
+    return $migration->getFilename();
   }
 }
