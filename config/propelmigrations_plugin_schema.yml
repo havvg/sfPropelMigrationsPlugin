@@ -1,0 +1,16 @@
+propel:
+  _attributes:      { package: plugins.sfPropelMigrationsPlugin.lib.model }
+  
+  schema_versions:
+    _attributes: { phpName: SchemaVersion }
+    version:
+      autoIncrement: false
+      primaryKey: true
+      type: bigint
+    database:
+      autoIncrement: false
+      primaryKey: true
+      type: varchar(255)
+    migrated_at:
+      required: true
+      type: timestamp

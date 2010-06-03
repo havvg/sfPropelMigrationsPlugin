@@ -1,0 +1,13 @@
+SchemaVersion:
+  SchemaVersion_1:
+    version: 12755561356551
+    database: "propel"
+    migrated_at: '2010-06-03 09:21:34'
+  SchemaVersion_2:
+    version: 12755561356551
+    database: "second-database"
+    migrated_at: '2010-06-03 09:21:34'
+  SchemaVersion_3:
+    version: 12755561493219
+    database: "propel"
+    migrated_at: '2010-06-03 10:32:17'
