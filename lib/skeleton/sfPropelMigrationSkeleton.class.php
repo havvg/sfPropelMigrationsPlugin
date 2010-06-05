@@ -15,17 +15,23 @@ class sfPropelMigrationSkeleton
 class sfMigration_{$version} extends sfMigration
 {
   /**
-   * Execute this migration.
+   * The migration process itself.
+   *
+   * @return bool
    */
-  public function up()
+  protected function up()
   {
     $up
   }
 
   /**
-   * Revert this migration.
+   * The process to revert this migration.
+   *
+   * @param bool \$failed A flag whether the down is called because of a failed up. Defaults to false (normal down action).
+   *
+   * @return bool
    */
-  public function down()
+  protected function down(\$failed = false)
   {
     $down
   }

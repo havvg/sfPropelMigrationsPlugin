@@ -1,6 +1,6 @@
 <?php
 
-class sfMigration
+abstract class sfMigration extends sfBaseMigration
 {
 
 }
